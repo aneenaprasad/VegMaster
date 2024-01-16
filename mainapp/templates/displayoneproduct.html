@@ -1,0 +1,17 @@
+
+    
+    {% for i in fv %}
+    <tr>
+    
+    <td>{{i.f_no}}</td>
+     <td>{{i.f_name}}</td>
+     <td>{{i.f_color}}</td>
+    <td><a href ="{% url 'edit' i.id %}"><button>Edit</button></a></td>
+    <td>
+        <button>Delete</button>
+    </td>
+    
+    </tr>
+    {% endfor %}
+    </table>
+    
