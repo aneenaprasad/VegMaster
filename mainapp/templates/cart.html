@@ -65,16 +65,17 @@
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
         
-                <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
-                <a class="dropdown-item" href="{% url 'checkout' %}">Checkout</a>
+                <a class="dropdown-item" href="{% url 'allproduct' %}">All products</a>
               </div>
             </li>
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="{% url 'viewblog' %}" class="nav-link">Blog</a></li>
-			  <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
-			  <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
-	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+			  <li class="nav-item"><a href="{% url 'create_blog' %}" class="nav-link">Blog</a></li>
+			  <li class="nav-item"><a href="{% url 'addcomp' %}" class="nav-link">Contact Us</a></li>
 
+			  <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+			  
+	          <li class="nav-item cta cta-colored"><a href="{% url 'viewcart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[{{co}}]</a></li>
+              
 	        </ul>
 	      </div>
 	    </div>
@@ -174,13 +175,18 @@
 	            </form>
     				</div>
     				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
-    			</div>
+				</div>
+			
     			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+					
     				<div class="cart-total mb-3">
-    					<h3>Cart Totals</h3>
-    					<p class="d-flex">
-    						<span>Subtotal</span>
-    						<span>$20.60</span>
+						
+						<h3>Cart Totals</h3>
+						
+						
+    					<!-- <p class="d-flex">
+    						<span>Price</span>
+    						<span>Rs.{{i.wishproduct.product_price}}</span>
     					</p>
     					<p class="d-flex">
     						<span>Delivery</span>
@@ -188,18 +194,23 @@
     					</p>
     					<p class="d-flex">
     						<span>Discount</span>
-    						<span>$3.00</span>
+    						<span>$0.00</span>
     					</p>
-    					<hr>
+						<hr> -->
     					<p class="d-flex total-price">
     						<span>Total</span>
-    						<span>$17.60</span>
-    					</p>
-    				</div>
-    				<p><a href="{% url 'checkout' %}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-    			</div>
+    						<span>Rs.{{total}} </span>
+						</p>
+					</div>
+				
+					{% for i in rc %}
+    				<p><a href="{% url 'checkout' i.id %}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+				{% endfor %}
+				</div>
+				
     		</div>
 			</div>
+			
 		</section>
 
 		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">

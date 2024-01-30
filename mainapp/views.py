@@ -18,6 +18,8 @@ def register(request):
             user_password=e,    
         )
         data.save()
+
+
         
 
     return render(request,'register.html')
@@ -120,9 +122,11 @@ def contact(request):
 #         data.save()
 #     return render(request,'addblog.html')
 
-def viewblog(request):
+def create_blog(request):
     if request.method=="POST":
-        e=request.FILES['pimage']
+        e=request.FILES.get('blogimag')
+        print(e)
+        print('--------------------------------------------------')
         f=request.POST['pname']
         g=request.POST['date']
         h=request.POST['enterblog']
@@ -137,10 +141,13 @@ def viewblog(request):
         data.save()
     
 
-    vb=Blog.objects.all()
+    vb=Blog.objects.all()[:4]
+    lid=request.session.get('u_id')
+    co=Cart.objects.filter(cartuser=lid).count()
     print(vb)
-    context={"vb":vb}
-    return render(request,'blog.html',context)
+    context={"vb":vb,'co':co}
+    return render(request, 'blog.html', context)
+    
 def cart(request):
     # ct=Products.objects.get(id=id)
     # cid=request.session.get('u_id')
@@ -151,14 +158,29 @@ def wishlist(request,id):
     wl=Product.objects.get(id=id)
     uid=request.session.get('u_id')
     Wishlist.objects.create(wishuser=Register.objects.get(id=uid),wishproduct=wl)
+    wr=Wishlist.objects.filter(wishuser=uid)
+    context={'wr':wr}
+    return render(request,'wishlist.html',context)
 
 def wishdone(request):
     wid=request.session.get('u_id')
     wr=Wishlist.objects.filter(wishuser=wid)
     context={'wr':wr}
     return render(request,'wishlist.html',context)
-def checkout(request):
-    return render(request,'checkout.html')
+def checkout(request,id):
+
+    cid=request.session.get('u_id')
+    # lc=Cart.objects.filter(cartuser=cid)
+    vc=Cart.objects.filter(cartuser=cid)
+    lc=Wishlist.objects.filter(wishuser=cid)
+    pid=request.session.get('u_id')
+    rc=Register.objects.filter(id=pid)
+
+    total=0
+    for i in vc:
+        total=total+i.totalsize
+    context={'lc':lc,'vc':vc,'total':total,"rc":rc}
+    return render(request,'checkout.html',context)
 def singleproduct(request,id):
     pid=request.session.get('u_id')
     sp=Product.objects.filter(id=id)
@@ -178,7 +200,7 @@ def addcart(request,id):
             cartuser=Register.objects.get(id=uid),
             product_size=size,
             product_quantity=quantity,
-            totalsize=totall,
+            totalsize=totall,   
             
         )
         data.save()
@@ -200,16 +222,26 @@ def viewcart(request):
     # return render(request,'cart.html',context)
     vid=request.session.get('u_id')
     vc=Cart.objects.filter(cartuser=vid)
-    context={'vc':vc}
+    co=Cart.objects.filter(cartuser=vid).count()
+    total=0
+    
+    for i in vc:
+        total=total+i.totalsize
+    print(co)
+    context={'vc':vc, 'total':total,'co':co}
     return render(request,'cart.html',context)
 def addcomp(request):
     if request.method=="POST":
         e=request.POST['datee']
-        f=request.POST['entercomp']
+        f=request.POST['name']
+        g=request.POST['mail']
+        h=request.POST['entercomp']
 
         data=Comment(
             datee=e,
-            addcomplain=f,
+            name=f,
+            email=g,
+            addcomplain=h,
           
         )
         data.save()
@@ -220,6 +252,52 @@ def allproduct(request):
     context={"products":products}
 
     return render(request,'allproduct.html',context)
+def allblog(request):
+    vb=Blog.objects.all()
+    context={"vb":vb}
+    return render(request, 'allblogg.html', context)
+
+def order(request,id):
+    # category= Category.objects.all()
+    # context={"category":category}
+    # if request.method=='POST':
+    #category=request.POST['addcategory']
+    # c_id=Category.objects.get(Category=category)
+    oid=request.session.get('u_id')
+    oduser=Register.objects.get(id=oid),
+    countrye=request.POST['country']
+    address=request.POST['address']
+    towne=request.POST['town']
+    pincode=request.POST['pin']
+
+    data=Order(
+        
+        od_country=countrye,
+        od_address=address,
+        od_town=towne,
+        od_pin=pincode,         
+        )
+    data.save()
+    return redirect(f'/checkout/{id}')
+
+    return render(request,'checkout.html')
+
+def vieworder(request):
+
+    odd=request.session.get('u_id')
+    olf=request.session.get('u_id')
+    oil=request.session.get('u_id')
+    od=Register.objects.filter(id=odd)
+    ov=Product.objects.filter(id=olf)
+    ul=Order.objects.filter(id=oil)
+    
+    context={'od':od,'ov':ov,'ul':ul}
+    return render(request,'displayorder.html',context)
+
+
+
+
+
 
 
 

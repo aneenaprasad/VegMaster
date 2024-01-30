@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>order</title>
+</head>
+<body>
+    <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body class="goto-here">
+		<div class="py-1 bg-primary">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">+ 1235 2355 98</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">youremail@email.com</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="{% url 'home' %}">Vegefoods</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+	          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="shop.html">Shop</a>
+              
+                <a class="dropdown-item" href="{% url 'allproduct' %}">All products</a>
+              
+              </div>
+            </li>
+	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="{% url 'create_blog' %}" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="{% url 'addcomp' %}" class="nav-link">Contact Us</a></li>
+
+	    
+	          <li class="nav-item cta cta-colored"><a href="{% url 'viewcart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+
+	        </ul>
+	      </div>
+	    </div>
+    </nav>
+  
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact us</span></p>
+            <h1 class="mb-0 bread">Contact us</h1>
+            <center><a class="mb-0 bread" style="font-size:xx-large"  href="{% url 'create_blog' %}">Any Complaints???</a></center>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form></form>
+    {% csrf_token %}
+
+                
+            
+                <h3 class="mb-4 billing-heading">Order Details</h3>
+      <div class="row align-items-end">
+          <div class="col-md-6">
+            {% for i in od %}
+        <div class="form-group">
+            <label for="firstname">Name</label>
+          <input type="text" class="form-control" placeholder="" value="{{i.user_name}}">
+        </div>
+        {% endfor %}
+      </div>
+      {% for i in ov %}
+       <div class="col-md-6">
+           
+        <div class="form-group">
+            <label for="lastname">Product</label>
+          <input type="text" class="form-control" placeholder="" value="{{i.product_name}}">
+        </div>
+        
+    </div>
+    <div class="col-md-6"> 
+        <div class="form-group">
+            <label for="lastname">Price</label>
+          <input type="text" class="form-control" placeholder=""  value="Rs.{{i.product_price}}">
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="col-md-6"> 
+        {% for i in ul %}
+        <div class="form-group">
+            <label for="lastname">Country</label>
+          <input type="text" class="form-control" placeholder=""  value="{{i.od_country}}">
+        </div>
+    </div>
+
+    <!-- <div class="w-100"></div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="country">State / Country</label>
+                <div class="select-wrap">
+              <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+              <input type="text"  class="form-control" placeholder="House number and street name" value="" >
+
+            </div>
+            </div>
+        </div>
+        <div class="w-100"></div> -->
+        <div class="col-md-6">
+
+            <div class="form-group">
+            <label for="streetaddress">Street Address</label>
+          <input type="text"  class="form-control" placeholder="" value="{{i.od_address}}">
+        </div>
+        
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="towncity">Town / City</label>
+                <input type="text"  class="form-control" placeholder="" value="{{i.od_town}}">
+        </div>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="postcodezip">Postcode / ZIP *</label>
+                <input type="text"  class="form-control" placeholder="" value="{{i.od_pin}}">
+        </div>
+        </div>
+        {% endfor %}
+        <div class="col-md-6">
+            {% for i in od %}
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" placeholder="" value="{{i.user_contactno}}">
+        </div>
+        </div>
+    
+        <div class="w-100"></div>
+        <div class="col-md-6">
+    
+        <div class="form-group">
+            <label for="emailaddress">Email Address</label>
+          <input type="text" class="form-control" placeholder="" value="{{i.user_email}}">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <!-- <label for="emailaddress">Email Address</label>
+          <input type="text" class="form-control" placeholder="" value="{{i.user_email}}">
+        </div> -->
+    </div>
+    {% endfor %}
+
+    <div class="col-md-6">
+        <div class="form-group">
+    
+            <label for="emailaddress">Order placed Successfully.</label>
+
+        
+        </div>
+    </div>
+
+    <div class="w-100"></div>
+    <div class="col-md-12">
+    
+        <div class="form-group mt-4">
+                            <!-- <div class="radio">
+                              <label class="mr-3"><input type="radio" name="optradio"> Create an Account? </label>
+                              <label><input type="radio" name="optradio"> Ship to different address</label>
+                            </div> -->
+                        </div>
+    </div>
+    </div>
+  <!-- END -->
+        </div>
+</body>
+</html>

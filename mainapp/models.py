@@ -15,7 +15,7 @@ class Product(models.Model):
     product_name=models.CharField(max_length=50)
     product_price=models.IntegerField()
 class Blog(models.Model):
-    b_image=models.ImageField(upload_to='blogimage',default='null.jpg')
+    b_image=models.ImageField(upload_to='blogimage')
     b_name=models.CharField(max_length=20)
     b_date=models.DateField()
     b_enterblog=models.CharField(max_length=30)
@@ -31,6 +31,15 @@ class Cart(models.Model):
     totalsize=models.IntegerField(default=0)
 class Comment(models.Model):
     datee=models.DateField()
+    name=models.CharField(max_length=30)
+    email=models.EmailField()
     addcomplain=models.CharField(max_length=30)
+class Order(models.Model):
+    odproduct=models.ForeignKey(Product,on_delete=models.DO_NOTHING,null=True,blank=True)
+    oduser=models.ForeignKey(Register,on_delete=models.DO_NOTHING,null=True,blank=True)
+    od_country=models.CharField(max_length=30)
+    od_address=models.CharField(max_length=30)
+    od_town=models.CharField(max_length=30)
+    od_pin=models.IntegerField()
 
 

@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body class="goto-here">
-    <form method="post">
 		<div class="py-1 bg-primary">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -68,15 +67,17 @@
           
           
             
-                <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
-                <a class="dropdown-item" href="{% url 'checkout' %}">Checkout</a>
+                <a class="dropdown-item" href="{% url 'allproduct' %}">All products</a>
+              
               </div>
             </li>
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-	          <li class="nav-item active"><a href="{% url 'viewblog' %}" class="nav-link">Blog</a></li>
-            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+            <li class="nav-item active"><a href="{% url 'create_blog' %}" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="{% url 'addcomp' %}" class="nav-link">Contact Us</a></li>
+
+        
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
-	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item cta cta-colored"><a href="{% url 'viewcart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[{{co}}]</a></li>
 
 	        </ul>
 	      </div>
@@ -94,8 +95,8 @@
         </div>
       </div>
     </div>
-
-    <a class="navbar-brand" href="{% url 'viewblog' %}">ADD BLOG</a>
+    
+    <center><a class="navbar-brand" style="font-size:xx-large"  href="{% url 'create_blog' %}">ADD BLOG</a></center>
     
     <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
@@ -104,19 +105,21 @@
 	        <span class="oi oi-menu"></span> Menu
 	      </button> -->
 
-
-        <form method="post" action="{% url 'viewblog' %}" enctype="multipart/form-data">
+      
+        <form  method="post" action="{% url 'create_blog' %}" enctype="multipart/form-data">
         {% csrf_token %}
-        <a class="navbar-brand">Product_image:</a>
-        <input type="file" name="pimage"><br><br>
-        <a class="navbar-brand">Product_name:</a>
-        <input type="text" name="pname" placeholder="enter the product name"><br><br>
-        <a class="navbar-brand">Date:</a>
-        <input type="date" name="date"><br><br>
-        <a class="navbar-brand">Enter the Blog:</a>
-        <textarea name="enterblog" id="blogid" cols="30" rows="5" class="form-control"></textarea><br><br>
-        <input type="submit" name="submit" value="post Blog" id="submit" class="navbar-brand"> 
+        <a style="padding-left: 100px;" class="navbar-brand">Blog Picture:</a>
+        <input style="margin-left: 37px;" type="file" name="blogimag"><br><br>
+        <a style="padding-left: 100px;"class="navbar-brand">Item Name:</a>
+        <input style="margin-left: 60px;" type="text" name="pname" placeholder="enter the product name"><br><br>
+        <a style="padding-left: 100px;" class="navbar-brand">Date:</a>
+        <input style="margin-left: 120px;" type="date" name="date"><br><br>
+        <a style="padding-left: 100px;" class="navbar-brand">Write Your Blog:</a>
+        <textarea style="padding-left: 100px; margin-left: 100px; width: 700px;" name="enterblog" id="blogid" rows="6" class="form-control"></textarea><br><br>
+        <input style="margin-left: 100px;" type="submit" name="submit" id="submit" class="navbar-brand"> 
     </form>
+
+  
 
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
@@ -126,7 +129,7 @@
 						<div class="row">
 							<div class="col-md-12 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch d-md-flex">
-		              <a href="blog-single.html" class="block-20" style="background-image:url({{i.b_image.url}});">
+		              <a href="blog-single.html" class="block-20" {% if i.b_image %} style="background-image:url({{i.b_image.url}});"{% endif %}>
                   </a>
                 
 		              <div class="text d-block pl-md-4">
@@ -135,8 +138,8 @@
 		                  <div><a href="#">{{i.b_date}}</a></div>
 		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
 		                </div>
-		                <h3 class="heading"><a href="#">{{i.b_enterblog}}
-		                <p><a href="{% url 'blogsingle' %}" class="btn btn-primary py-2 px-3">Read more</a></p>
+		                <h3 class="heading"><a href="#">{{i.b_enterblog}}</a></h3>
+		                <p><a href="{% url 'allblog' %}" class="btn btn-primary py-2 px-3">View all Blogs</a></p>
 		              </div>
 		            </div>
               </div>
@@ -163,7 +166,6 @@
 		       
           </div> <!-- .col-md-8 -->
           
-              </form>
             </div>
             <div class="sidebar-box ftco-animate">
             	<h3 class="heading">Categories</h3>

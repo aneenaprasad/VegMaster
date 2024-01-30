@@ -67,18 +67,20 @@
               <div class="dropdown-menu" aria-labelledby="dropdown04">
               	<!-- <a class="dropdown-item" href="shop.html">Shop</a> -->
               
-                <a class="dropdown-item" href="{% url 'addblog' %}">Add Blog</a>
-                <a class="dropdown-item" href="{% url 'allproduct' %}">ALL Product</a>
-                <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
-                <a class="dropdown-item" href="{% url 'checkout' %}">Checkout</a>
-                <a class="dropdown-item" href="{% url 'addcomp' %}">Add Complaints</a>
+              
+                <a class="dropdown-item" href="{% url 'allproduct' %}">ALL Products</a>
+              
+            
+              
               </div>
             </li>
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="{% url 'viewblog' %}" class="nav-link">Blog</a></li>
-			  <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="{% url 'create_blog' %}" class="nav-link">Blog</a></li>
+      
+        <li class="nav-item"><a href="{% url 'addcomp' %}" class="nav-link">Contact Us</a></li>
+
 			  <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
-	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item cta cta-colored"><a href="{% url 'viewcart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
 	        </ul>
 	      </div>

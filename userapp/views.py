@@ -6,9 +6,11 @@ def home(request):
     category= Category.objects.all()
     
     products=Product.objects.all()[:4]
-    context={"products":products,"category":category}
+    lid=request.session.get('u_id')
+    co=Cart.objects.filter(cartuser=lid).count()
+    context={"products":products,"category":category,'co':co}
 
-    return render(request,'home.html',context)
+    return render(request,'homee.html',context)
 def adminindex(request):
 
     return render(request,'adminindex.html')
@@ -20,7 +22,19 @@ def indexdone(request):
     return render(request,'indexdone.html')
 def admindone(request):
 
-    return render(request,'admindone.html')
+    cl=Product.objects.all().count()
+    ck=Register.objects.all().count()
+    cw=Category.objects.all().count()
+    bl=Blog.objects.all().count()
+
+    ns=Register.objects.all()
+    jl=Product.objects.all()
+    context={'ck':ck,'cl':cl,'cw':cw,'bl':bl,"ns":ns,"jl":jl}
+    print(ns)
+    print(jl)
+    
+
+    return render(request,'admindone.html',context)
 def userdetail(request):
     userdetail=Register.objects.all()
     context={"userdetail":userdetail}

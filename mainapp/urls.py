@@ -13,10 +13,10 @@ urlpatterns = [
     path('blogsingle',views.blogsingle,name="blogsingle"),
     path('contact',views.contact,name="contact"),
     # path('addblog',views.addblog,name="addblog"),
-    path('viewblog',views.viewblog,name="viewblog"),
+    path('create_blog',views.create_blog,name="create_blog"),
     path('cart',views.cart,name="cart"),
     path('wishlist/<int:id>',views.wishlist,name="wishlist"),
-    path('checkout',views.checkout,name="checkout"),
+    path('checkout/<int:id>',views.checkout,name="checkout"),
     path('viewcat',views.viewcat,name="viewcat"),
     path('singleproduct/<int:id>',views.singleproduct,name="singleproduct"),
     path('wishdone',views.wishdone,name="wishdone"),
@@ -26,6 +26,11 @@ urlpatterns = [
     path('addcomp',views.addcomp,name="addcomp"),
     path('allproduct',views.allproduct,name="allproduct"),
     path('logout',views.logout,name="logout"),
+    path('allblog',views.allblog,name="allblog"),
+    path('order/<int:id>',views.order,name="order"),
+    path('vieworder',views.vieworder,name="vieworder"),
+
+
 
     
 ]

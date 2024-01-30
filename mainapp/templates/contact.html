@@ -69,21 +69,23 @@
               	
               
                 <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
-                <a class="dropdown-item" href="{% url 'checkout' %}">Checkout</a>
+                <a class="dropdown-item" href="{% url 'allproduct' %}">All products</a>
+              
               </div>
             </li>
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="{% url 'viewblog' %}" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="{% url 'create_blog' %}" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="{% url 'addcomp' %}" class="nav-link">Add Complaints</a></li>
+
             <li class="nav-item active"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
-	          <li class="nav-item cta cta-colored"><a href="{% url 'cart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item cta cta-colored"><a href="{% url 'viewcart' %}" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
     <!-- END nav -->
-
     <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -106,24 +108,24 @@
           </div>
           <div class="col-md-3 d-flex">
           	<div class="info bg-white p-4">
-	            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+	            <p><span>Phone:</span> <a href="tel://1234567920">+ 91 9207426514</a></p>
 	          </div>
           </div>
           <div class="col-md-3 d-flex">
           	<div class="info bg-white p-4">
-	            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+	            <p><span>Email:</span> <a href="mailto:info@yoursite.com">vegmaster@gmail.com</a></p>
 	          </div>
           </div>
           <div class="col-md-3 d-flex">
           	<div class="info bg-white p-4">
-	            <p><span>Website</span> <a href="#">yoursite.com</a></p>
+	            <p><span>Website</span> <a href="#">vegmaster.com</a></p>
 	          </div>
           </div>
         </div>
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
             <form action="#" class="bg-white p-5 contact-form">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <input type="text" class="form-control" placeholder="Name">
               </div>
               <div class="form-group">
@@ -137,7 +139,7 @@
               </div>
               <div class="form-group">
                 <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-              </div>
+              </div> -->
             </form>
           
           </div>
